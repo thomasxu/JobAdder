@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using JobMatcher.Application.Dtos.Job;
 using JobMatcher.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +16,9 @@ namespace JobMatcher.Api.Controllers
         }
 
         [HttpGet]
-        public void GetJobsWithMatchedCandidates()
+        public IList<MatchedJobDto> GetJobsWithMatchedCandidates()
         {
-            _jobService.GetJobsWithMatchedCandidates();
+            return _jobService.GetJobsWithMatchedCandidates();
         }
     }
 }
