@@ -24,9 +24,10 @@ namespace JobMatcher.Application.Services.Jobs
 
             //Assumption only one Job and one candidate
             var jobDto = jobsDto.FirstOrDefault();
+            var jobSkills = ParseSkills(jobDto.Skills);
 
             var matchedJob = new MatchedJob();
-            var matchedCandidate = GetMatchedCandidateForJob(jobDto, candidatesDto.FirstOrDefault());
+            var matchedCandidate = GetMatchedCandidateForJob(jobDto, candidatesDto.FirstOrDefault(), jobSkills);
             if (matchedCandidate != null)
             {
                 matchedJob.MatchedCandidatesDto.Add(matchedCandidate);
@@ -36,21 +37,24 @@ namespace JobMatcher.Application.Services.Jobs
         }
 
 
-        private MatchedCandidateDto GetMatchedCandidateForJob(JobDto jobDto, CandidateDto candidateDto)
+        private MatchedCandidateDto GetMatchedCandidateForJob(JobDto jobDto, CandidateDto candidateDto,
+            IDictionary<string, int> jobSkills)
         {
             int score = 0;
             IList<string> matchedSkills = new List<string>();
+            var candidateSkills = ParseSkills(candidateDto.SkillTags);
 
-            //Assumption: Both job and candidate has 1 skill
-            //Algorithm order matters for both Job and Candidate.
-            //The first skill get score 100, the second 99 .... for both Job and Candidate
-            //If a match is found final JobMatch score is jobScore + candidateScore for the match,
-            //the higher the score the better the match
-            if (jobDto.Skills == candidateDto.SkillTags)
+
+            foreach (var jobSkill in jobSkills)
             {
-                matchedSkills.Add(jobDto.Skills);
-                score += 100 + 100;
+
+                if (candidateSkills.ContainsKey(jobSkill.Key))
+                {
+                    matchedSkills.Add(jobSkill.Key);
+                    score += jobSkill.Value + candidateSkills[jobSkill.Key];
+                }
             }
+
 
             if (matchedSkills.Count == 0)
             {
@@ -65,6 +69,29 @@ namespace JobMatcher.Application.Services.Jobs
             };
 
             return matchedCandidateDto;
+        }
+
+
+   
+
+        /// <summary>
+        /// Algorithm:
+        /// Order matters for both Job and Candidate.
+        /// The first skill get score 100, the second get 99, the third get 98 .... for both Job and Candidate
+        /// If a match is found final JobMatch score is jobScore + candidateScore for the match
+        /// The higher the score the better the match
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
+        private static Dictionary<string, int> ParseSkills(string skills)
+        {
+            const string separator = ",";
+            int index = 0;
+            var skillsScore = skills
+                .Split(separator)
+                .ToDictionary(js => js, js => 100 - index++);
+
+            return skillsScore;
         }
     }
 }

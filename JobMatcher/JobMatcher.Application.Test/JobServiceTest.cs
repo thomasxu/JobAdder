@@ -50,7 +50,7 @@ namespace JobMatcher.Application.Test
 
 
         [Fact]
-        public void GetJobsWithMatchedCandidate_SkillMatch_IsPickedWithRightScore()
+        public void GetJobsWithMatchedCandidate_SkillsMatch_IsPickedWithRightScore()
         {
             var candidateClient = Substitute.For<ICandidateClient>();
             var jobClient = Substitute.For<IJobClient>();
@@ -61,7 +61,7 @@ namespace JobMatcher.Application.Test
                 {
                     CandidateId = 1,
                     Name = "Thomas",
-                    SkillTags = "Angular7"
+                    SkillTags = "Angular7, DotNetCore"
                 }
             };
             IList<JobDto> jobs = new List<JobDto>
@@ -70,13 +70,12 @@ namespace JobMatcher.Application.Test
                 {
                     JobId = 1,
                     Company = "JobAdder",
-                    Skills = "Angular7"
+                    Skills = "Angular7, DotNetCore"
                 }
             };
 
             candidateClient.GetAll().Returns(candidates);
             jobClient.GetAll().Returns(jobs);
-
 
             var sut = new JobService(jobClient, candidateClient);
             var jobsWithMatchedCandidate = sut.GetJobsWithMatchedCandidates();
@@ -86,8 +85,8 @@ namespace JobMatcher.Application.Test
             var matchedCandidate = jobsWithMatchedCandidate[0].MatchedCandidatesDto;
             Assert.Equal(1, matchedCandidate.Count);
             Assert.Equal(1, matchedCandidate[0].Candidate.CandidateId);
-            Assert.Single(matchedCandidate[0].MatchedSkills);
-            Assert.Equal(200, matchedCandidate[0].MatchedScore);
+            Assert.Equal(2, matchedCandidate[0].MatchedSkills.Length);
+            Assert.Equal(398, matchedCandidate[0].MatchedScore);
         }
     }
 }
