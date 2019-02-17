@@ -89,6 +89,8 @@ namespace JobMatcher.Application.Services.Jobs
             int index = 0;
             var skillsScore = skills
                 .Split(separator)
+                .Select(js => js.Trim().ToLower())
+                .Distinct()
                 .ToDictionary(js => js, js => 100 - index++);
 
             return skillsScore;
