@@ -8,7 +8,13 @@ namespace JobMatcher.Application.Services.Jobs
     {
         public IList<MatchedJob> GetJobsWithMatchedCandidates()
         {
-            return new List<MatchedJob>();
+            var matchedJob = new MatchedJob
+            {
+                JobDto = new JobDto(),
+                MatchedCandidatesDto = new List<MatchedCandidateDto>()
+            };
+
+            return new List<MatchedJob> {matchedJob};
         }
     }
 }
