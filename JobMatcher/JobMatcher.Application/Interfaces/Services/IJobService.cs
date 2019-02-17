@@ -5,6 +5,6 @@ namespace JobMatcher.Application.Interfaces.Services
 {
     public interface IJobService
     {
-        IList<MatchedJob> GetJobsWithMatchedCandidates();
+        IList<MatchedJobDto> GetJobsWithMatchedCandidates();
     }
 }

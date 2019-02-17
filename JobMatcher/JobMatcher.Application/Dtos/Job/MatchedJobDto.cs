@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace JobMatcher.Application.Dtos.Job
 {
-    public class MatchedJob
+    public class MatchedJobDto
     {
-        public MatchedJob()
+        public MatchedJobDto()
         {
             MatchedCandidatesDto = new List<MatchedCandidateDto>();
         }

@@ -17,23 +17,33 @@ namespace JobMatcher.Application.Services.Jobs
             _candidateClient = candidateClient;
         }
 
-        public IList<MatchedJob> GetJobsWithMatchedCandidates()
+
+        public IList<MatchedJobDto> GetJobsWithMatchedCandidates()
         {
             var jobsDto = _jobClient.GetAll();
             var candidatesDto = _candidateClient.GetAll();
 
-            //Assumption only one Job and one candidate
-            var jobDto = jobsDto.FirstOrDefault();
+            var matchedJobDtos = jobsDto.Select(jobDto => GetMatchedCandidatesForJob(jobDto, candidatesDto));
+
+            return matchedJobDtos.ToList();
+        }
+
+
+        private MatchedJobDto GetMatchedCandidatesForJob(JobDto jobDto, IList<CandidateDto> candidatesDto)
+        {
+
             var jobSkills = ParseSkills(jobDto.Skills);
 
-            var matchedJob = new MatchedJob();
-            var matchedCandidate = GetMatchedCandidateForJob(jobDto, candidatesDto.FirstOrDefault(), jobSkills);
-            if (matchedCandidate != null)
-            {
-                matchedJob.MatchedCandidatesDto.Add(matchedCandidate);
-            }
+            var matchedJobDto = new MatchedJobDto();
 
-            return new List<MatchedJob> {matchedJob};
+            var matchedCandidateDtos = candidatesDto.Select(candidateDto => GetMatchedCandidateForJob(jobDto, candidateDto, jobSkills));
+            matchedJobDto.JobDto = jobDto;
+            matchedJobDto.MatchedCandidatesDto = matchedCandidateDtos
+                .Where(candidate => candidate != null)
+                .OrderByDescending(candidate => candidate.MatchedScore)
+                .ToList();
+
+            return matchedJobDto;
         }
 
 
@@ -71,8 +81,6 @@ namespace JobMatcher.Application.Services.Jobs
             return matchedCandidateDto;
         }
 
-
-   
 
         /// <summary>
         /// Algorithm:
