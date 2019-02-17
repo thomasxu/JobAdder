@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using JobAdder.Application.Dtos.Job;
-using JobAdder.Application.Interfaces.Services;
+using JobMatcher.Application.Dtos.Job;
+using JobMatcher.Application.Interfaces.Services;
 
-namespace JobAdder.Application.Services.Jobs
+namespace JobMatcher.Application.Services.Jobs
 {
     public class JobService : IJobService
     {

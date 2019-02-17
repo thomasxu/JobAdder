@@ -1,4 +1,4 @@
-using JobAdder.Application.Interfaces.Services;
+using JobMatcher.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobMatcher.Api.Controllers

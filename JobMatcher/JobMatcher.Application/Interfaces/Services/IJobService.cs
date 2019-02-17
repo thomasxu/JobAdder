@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using JobAdder.Application.Dtos.Job;
+using JobMatcher.Application.Dtos.Job;
 
-namespace JobAdder.Application.Interfaces.Services
+namespace JobMatcher.Application.Interfaces.Services
 {
     public interface IJobService
     {

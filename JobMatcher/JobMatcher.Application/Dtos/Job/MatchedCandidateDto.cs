@@ -1,6 +1,4 @@
-using JobAdder.Application.Services.Jobs;
-
-namespace JobAdder.Application.Dtos.Job
+namespace JobMatcher.Application.Dtos.Job
 {
     public class MatchedCandidateDto
     {

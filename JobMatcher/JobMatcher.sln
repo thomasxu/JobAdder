@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMatcher.Api", "JobMatcher.Api\JobMatcher.Api.csproj", "{C8FDC8A8-3BB8-4E3D-A2F4-112EF7516202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobAdder.Application", "JobAdder.Application\JobAdder.Application.csproj", "{A381BFDA-1B08-4C9F-8FC3-0F173AF2C81D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMatcher.Application", "JobMatcher.Application\JobMatcher.Application.csproj", "{A381BFDA-1B08-4C9F-8FC3-0F173AF2C81D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobAdder.Domain", "JobAdder.Domain\JobAdder.Domain.csproj", "{E7C27AE4-51EF-40ED-8387-F22AED687C0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMatcher.Domain", "JobMatcher.Domain\JobMatcher.Domain.csproj", "{E7C27AE4-51EF-40ED-8387-F22AED687C0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobAdder.Infrastructure", "JobAdder.Infrastructure\JobAdder.Infrastructure.csproj", "{4823C40F-92A8-4623-AFF3-8C0688AB45A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobMatcher.Infrastructure", "JobMatcher.Infrastructure\JobMatcher.Infrastructure.csproj", "{4823C40F-92A8-4623-AFF3-8C0688AB45A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

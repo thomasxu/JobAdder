@@ -1,4 +1,4 @@
-namespace JobAdder.Application.Dtos.Job
+namespace JobMatcher.Application.Dtos.Job
 {
     public class JobDto
     {
