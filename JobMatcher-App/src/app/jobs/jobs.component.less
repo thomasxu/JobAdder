@@ -1,0 +1,32 @@
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-title-container {
+  display: flex;
+  align-items: center;
+
+  .title {
+    padding-right: 20px;
+
+    width: 460px;
+    .ellipsis();
+  }
+}
+
+.candidate-container {
+  padding-left: 40px;
+
+  display: flex;
+  align-items: center;
+
+  .candidate-name {
+    padding-right: 40px;
+
+    width: 400px;
+    .ellipsis();
+  }
+}
+

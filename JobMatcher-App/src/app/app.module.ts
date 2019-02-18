@@ -5,8 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatButton,
+  MatButtonModule, MatChip, MatChipsModule, MatExpansionModule,
   MatIconModule, MatInputModule,
-  MatMenuModule, MatSidenavModule,
+  MatListModule,
+  MatMenuModule, MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { JobsComponent } from './jobs/jobs.component';
@@ -21,10 +26,18 @@ import { JobsComponent } from './jobs/jobs.component';
     BrowserModule,
     AppRoutingModule,
     MatMenuModule,
+    MatButtonModule,
     MatIconModule,
+    MatTabsModule,
     MatSidenavModule,
+    MatListModule,
     MatToolbarModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatButtonModule,
+
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
