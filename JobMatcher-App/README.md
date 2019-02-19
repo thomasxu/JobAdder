@@ -11,12 +11,12 @@ Please install the latest version of Angular CLI and NodeJs
 
 # Source code structure
 It contains 2 applications
- 1. JobMatcher.Api which is the frontend angular7 app 
- 2. JobMatcher which is backend using Dotnet Core 2.2 
+ 1. JobMatcher-App is the frontend angular7 app 
+ 2. JobMatcher is the backend using Dotnet Core 2.2 
 
  
 # How to run backend server, 
-Make sure you are in Development Mode
+Make sure you are in Development Mode with ASPNETCORE_ENVIRONMENT set to Development
 
 use Rider or Visual Studio F5 
 or cd into JobAdder.Api and type:
