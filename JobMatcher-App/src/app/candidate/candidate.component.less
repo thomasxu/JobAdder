@@ -1,0 +1,42 @@
+.top-match-container {
+  width: 400px;
+  .top-match-label {
+    color: #3f51b5;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  .top-match-candidate {
+    padding-right: 3px;
+    font-size: 13px;
+  }
+  .top-match-score {
+
+  }
+}
+
+.skill-text {
+  padding-left: 16px;
+  padding-right: 5px;
+}
+
+.canidate-container {
+  display: flex;
+  align-items: center;
+  .skills-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+@media only screen and (max-width: 976px) {
+  .canidate-container {
+    flex-direction: column;
+
+    .skills-container {
+      margin-left: -110px;
+    }
+  }
+}
+

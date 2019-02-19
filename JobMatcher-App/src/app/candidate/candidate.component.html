@@ -1,0 +1,19 @@
+<div class="canidate-container">
+  <div class="top-match-container">
+    <span *ngIf="title" class="top-match-label">{{title}}<br></span>
+    <span class="top-match-candidate">{{matchedCandidate.name}}</span>
+    <span class="top-match-score" matTooltip="The higher the score the better the match between candidate and job">
+    ({{matchedCandidate.matchedScore}})
+  </span>
+  </div>
+
+  <div class="skills-container">
+    <h1 [matBadge]="matchedCandidate.matchedSkills.length"></h1>
+    <span class="skill-text">skills match</span>
+    <mat-chip-list *ngFor="let matchedSkill of matchedCandidate.matchedSkills">
+      <mat-chip>{{matchedSkill}}</mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+
+
