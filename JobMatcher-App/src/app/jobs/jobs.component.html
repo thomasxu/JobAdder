@@ -1,24 +1,29 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <div class="panel-title-container">
-        <h3 class="title">
-          JobAdder match Thomas
-        </h3>
-        <mat-chip-list>
-          <mat-chip>Angular</mat-chip>
-          <mat-chip>DotnetCore</mat-chip>
-        </mat-chip-list>
+  <h2>Job Matcher</h2>
+  <mat-expansion-panel *ngFor="let matchedJob of matchedJobs$ | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="panel-title-container">
+          <h3 class="title">
+            <span class="job-name">{{matchedJob.name}}</span> <br>
+            <span class="company-name">from {{matchedJob.company}}</span>
+          </h3>
+          <app-candidate *ngIf="matchedJob.matchedCandidates && matchedJob.matchedCandidates.length > 0"
+            title="Top matched candidate"
+            [matchedCandidate]="matchedJob.matchedCandidates[0]">
+          </app-candidate>
+        </div>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="expansion-body" *ngIf="matchedJob.matchedCandidates && matchedJob.matchedCandidates.length > 0;else noMatchCandidate">
+      <h3 class="candidates-label">All matched candidates</h3>
+      <div class="candidates-container" *ngFor="let matchedCandidate of matchedJob.matchedCandidates">
+        <app-candidate
+          [matchedCandidate]="matchedCandidate">
+        </app-candidate>
       </div>
+    </div>
+    <ng-template #noMatchCandidate>No match candidate</ng-template>
 
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-
-  <div class="candidate-container">
-    <h4 class="candidate-name">Thomas</h4>
-    <mat-chip-list>
-      <mat-chip>Angular</mat-chip>
-      <mat-chip>DotnetCore</mat-chip>
-    </mat-chip-list>
-  </div>
-</mat-expansion-panel>
+  </mat-expansion-panel>

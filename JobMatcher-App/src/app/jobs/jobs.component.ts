@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {JobService} from '../services/job.service';
+import {MatchedJob} from '../models/job.model';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-jobs',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
 
-  constructor() { }
+  matchedJobs$: Observable<MatchedJob[]>;
 
-  ngOnInit() {
+  constructor(private jobService: JobService) {
+    this.matchedJobs$ = of([{
+      jobId: 1,
+      company: 'JobAdder',
+      name: 'Full stack developer',
+      matchedCandidates: [
+        {
+          candidateId: 1,
+          name: 'Thomas',
+          matchedScore: 399,
+          matchedSkills: ['Angular', 'AspnetCore']
+        }
+      ]
+    }]);
+
   }
 
+  ngOnInit() {
+    // this.matchedJobs$ = this.jobService.GetJobsWithMatchedCandidates();
+    // this.jobService.GetJobsWithMatchedCandidates();
+  }
 }

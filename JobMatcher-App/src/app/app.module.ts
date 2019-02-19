@@ -5,26 +5,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButton,
-  MatButtonModule, MatChip, MatChipsModule, MatExpansionModule,
+  MatBadgeModule,
+  MatButtonModule, MatChipsModule, MatExpansionModule,
   MatIconModule, MatInputModule,
   MatListModule,
   MatMenuModule, MatProgressSpinnerModule,
   MatSidenavModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { JobsComponent } from './jobs/jobs.component';
+import {HttpClientModule} from '@angular/common/http';
+import { CandidateComponent } from './candidate/candidate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobsComponent
+    JobsComponent,
+    CandidateComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
@@ -35,9 +39,10 @@ import { JobsComponent } from './jobs/jobs.component';
     MatInputModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
+    MatTooltipModule,
     MatButtonModule,
-
-    MatChipsModule
+    MatChipsModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-namespace JobMatcher.Application.Dtos.Job
+namespace JobAdder.Domain.ApiClients.Jobs.Response
 {
-    public class CandidateDto
+    public class CandidateResponse
     {
         public int CandidateId { get; set; }
         public string Name { get; set; }

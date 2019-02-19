@@ -1,3 +1,6 @@
+@primary: #3f51b5;
+@offset-candidate: 460px;
+
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -11,22 +14,45 @@
   .title {
     padding-right: 20px;
 
-    width: 460px;
+    width: @offset-candidate;
     .ellipsis();
+  }
+  .job-name {
+    color: @primary;
+  }
+  .company-name {
+    font-weight: normal;
+    font-size: 13px;
   }
 }
 
-.candidate-container {
-  padding-left: 40px;
+.candidates-label {
+  padding-left: 480px;
+  margin: 0 0 -10px;
+  color: @primary;
+}
+
+.candidates-container {
+  padding-left: 480px;
+  padding-top: 10px;
 
   display: flex;
   align-items: center;
+}
 
-  .candidate-name {
-    padding-right: 40px;
+@media only screen and (max-width: 976px) {
+  .candidates-container {
+    padding-left: 0;
+  }
 
-    width: 400px;
-    .ellipsis();
+  .panel-title-container {
+    app-candidate {
+      display:none;
+    }
+  }
+  .candidates-label {
+    padding-left: 0;
   }
 }
+
 

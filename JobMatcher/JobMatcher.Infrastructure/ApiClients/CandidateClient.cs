@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JobAdder.Domain.ApiClients.Jobs.Response;
 using JobMatcher.Application.Dtos.Job;
 using JobMatcher.Application.Interfaces.ApiClients;
 
@@ -13,9 +14,9 @@ namespace JobAdder.Infrastructure.ApiClients
             _apiClient = apiClient;
         }
 
-        public IList<CandidateDto> GetAll()
+        public IList<CandidateResponse> GetAll()
         {
-            var response = _apiClient.Get<List<CandidateDto>>("candidates");
+            var response = _apiClient.Get<List<CandidateResponse>>("candidates");
             return response;
         }
     }
