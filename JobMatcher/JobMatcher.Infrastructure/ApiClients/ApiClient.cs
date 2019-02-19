@@ -1,5 +1,7 @@
 using System;
+using JobAdder.Domain.ApiClients.Configuration;
 using JobMatcher.Application.Interfaces.ApiClients;
+using Microsoft.Extensions.Options;
 using RestSharp;
 
 namespace JobAdder.Infrastructure.ApiClients
@@ -10,9 +12,9 @@ namespace JobAdder.Infrastructure.ApiClients
 
         private readonly RestClient _client;
 
-        public ApiClient()
+        public ApiClient(IOptions<ApiClientSetting> setting)
         {
-            _client = new RestClient(ApiBaseUrl);
+            _client = new RestClient(setting.Value.ClientApiBaseUrl);
         }
 
         public T Get<T>(string url = "") where T: new()

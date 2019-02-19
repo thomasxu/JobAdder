@@ -1,15 +1,24 @@
-﻿using JobAdder.Infrastructure.ApiClients;
+﻿using JobAdder.Domain.ApiClients.Configuration;
+using JobAdder.Infrastructure.ApiClients;
 using JobMatcher.Application.Interfaces.ApiClients;
 using JobMatcher.Application.Interfaces.Services;
 using JobMatcher.Application.Services.Jobs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JobMatcher.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -19,6 +28,8 @@ namespace JobMatcher.Api
             services.AddTransient<ICandidateClient, CandidateClient>();
             services.AddTransient<IJobClient, JobClient>();
             services.AddTransient<IJobService, JobService>();
+
+            services.Configure<ApiClientSetting>(Configuration.GetSection("ApiClientSetting"));
 
             services.AddMvc();
 
